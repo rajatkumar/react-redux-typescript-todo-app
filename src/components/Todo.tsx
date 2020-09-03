@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import cx from 'classnames';
 import { toggleTodo } from '../redux/actions';
@@ -14,6 +14,12 @@ type Props = OwnProps;
 
 const Todo = ({ todo }: Props) => {
     const dispatch = useDispatch();
+    useEffect(() => {
+        console.log(`Mounting todo id ${todo.id}`);
+        return () => {
+            console.log(`Unmounting todo id ${todo.id}`);
+        };
+    }, [todo.id]); // always pass an array of dependencies, else it will run on every re-render!
     return (
         <li className="todo-item" onClick={() => dispatch(toggleTodo(todo.id))}>
             {todo && todo.completed ? '👌' : '👋'}{' '}

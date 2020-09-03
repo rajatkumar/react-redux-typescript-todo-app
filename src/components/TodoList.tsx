@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Todo from './Todo';
 import { getTodosByVisibilityFilter } from '../redux/selectors';
 import { useTypedSelector } from '../redux/reducers';
@@ -8,6 +8,7 @@ const TodoList = () => {
         const { visibilityFilter } = state;
         return getTodosByVisibilityFilter(state, visibilityFilter);
     });
+
     return (
         <ul className="todo-list">
             {todos && todos.length
