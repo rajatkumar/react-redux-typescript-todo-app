@@ -1,5 +1,9 @@
 {
-  "name": "app2",
+  "name": "react-redux-typescript-todo-app",
+  "author": {
+    "name": "Rajat Kumar",
+    "url": "https://github.com/rajatkumar/react-redux-typescript-todo-app"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
