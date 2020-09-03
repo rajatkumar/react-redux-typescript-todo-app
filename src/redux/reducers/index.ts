@@ -7,4 +7,5 @@ import { RootState } from '../types';
 const rootReducer = combineReducers({ todos, visibilityFilter });
 
 export default rootReducer;
+// It is recommended to use typed useSelector this way
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
