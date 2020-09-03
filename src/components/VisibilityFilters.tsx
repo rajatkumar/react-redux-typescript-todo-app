@@ -11,6 +11,7 @@ type Props = {
 const VisibilityFilters = ({ activeFilter, setFilter }: Props) => {
     return (
         <div className="visibility-filters">
+            <span>Filter by: </span>
             {Object.keys(VISIBILITY_FILTERS).map((filterKey) => {
                 const currentFilter = VISIBILITY_FILTERS[filterKey];
                 return (

@@ -1,7 +1,7 @@
 import { ADD_TODO, TOGGLE_TODO } from '../actionTypes';
-import { AllActionTypes } from '../types';
+import { AllActionTypes, RootState } from '../types';
 
-const initialState = {
+const initialState: RootState['todos'] = {
     allIds: [],
     byIds: {},
 };

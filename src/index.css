@@ -3,6 +3,13 @@
 }
 
 /** add todo **/
+.add-todo-container {
+    padding: 1rem;
+}
+.add-todo-container > input {
+    width: 30%;
+}
+
 .add-todo {
     margin-left: 0.5rem;
 }
@@ -26,11 +33,14 @@
 }
 
 /** visibility filters **/
+.visibility-filters {
+    padding-bottom: 1rem;
+}
 .filter {
     padding: 0.3rem 0;
     margin: 0 0.3rem;
     cursor: pointer;
 }
 .filter--active {
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid black;
 }

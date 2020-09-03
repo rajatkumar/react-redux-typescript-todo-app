@@ -6,11 +6,11 @@ export const getTodosState = (store: RootState) => store.todos;
 export const getTodoList = (store: RootState) =>
     getTodosState(store) ? getTodosState(store).allIds : [];
 
-export const getTodoById = (store: RootState, id: number) =>
-    getTodosState(store)
-        ? { ...getTodosState(store).byIds[id], id }
-        : { completed: false };
-
+export const getTodoById = (store: RootState, id: number) => {
+    const todoState = getTodosState(store);
+    const todoItem = todoState.byIds[id];
+    return { ...todoItem, id };
+};
 /**
  * example of a slightly more complex selector
  * select from store combining information from multiple reducers

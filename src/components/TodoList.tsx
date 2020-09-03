@@ -2,9 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Todo from './Todo';
 import { getTodosByVisibilityFilter } from '../redux/selectors';
-import { RootState, TodoItemList } from '../redux/types';
+import { RootState } from '../redux/types';
 
-type Props = TodoItemList;
+// used by Connect
+const mapStateToProps = (state: RootState) => {
+    const { visibilityFilter } = state;
+    const todos = getTodosByVisibilityFilter(state, visibilityFilter);
+    return { todos };
+};
+// the type coming from connect's state props ;
+type StateProps = ReturnType<typeof mapStateToProps>;
+
+// props expected by this components
+interface OwnProps {}
+type Props = OwnProps & StateProps;
 
 const TodoList = ({ todos }: Props) => (
     <ul className="todo-list">
@@ -16,11 +27,4 @@ const TodoList = ({ todos }: Props) => (
     </ul>
 );
 
-const mapStateToProps = (state: RootState) => {
-    const { visibilityFilter } = state;
-    const todos = getTodosByVisibilityFilter(state, visibilityFilter);
-    return { todos };
-};
-// export default TodoList;
-type StateProps = ReturnType<typeof mapStateToProps>;
 export default connect(mapStateToProps)(TodoList);

@@ -3,12 +3,18 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import { toggleTodo } from '../redux/actions';
 import { TodoItem } from '../redux/types';
+
+// This is what we get from connect
 interface DispatchProps {
     toggleTodo: typeof toggleTodo;
+}
+// This is components own props
+interface OwnProps {
     todo: TodoItem;
 }
 
-type Props = DispatchProps;
+// The final list of Props
+type Props = DispatchProps & OwnProps;
 
 const Todo = ({ todo, toggleTodo }: Props) => (
     <li className="todo-item" onClick={() => toggleTodo(todo.id)}>

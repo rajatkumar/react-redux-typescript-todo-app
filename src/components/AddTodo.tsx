@@ -21,7 +21,7 @@ class AddTodo extends React.Component<Props, StateProps> {
 
     render() {
         return (
-            <div>
+            <div className="add-todo-container">
                 <input
                     onChange={(e) => this.updateInput(e.target.value)}
                     value={this.state.input}
