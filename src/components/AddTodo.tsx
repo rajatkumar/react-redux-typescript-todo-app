@@ -1,38 +1,37 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { addTodo } from '../redux/actions';
-interface StateProps {
-    input: string;
-}
 
-type Props = { addTodo: typeof addTodo };
-
-class AddTodo extends React.Component<Props, StateProps> {
-    state: StateProps = { input: '' };
-
-    updateInput = (input: string) => {
-        this.setState({ input });
+const AddTodo = () => {
+    const [input, setInput] = useState('');
+    const dispatch = useDispatch();
+    const updateInput = (input: string) => {
+        setInput(input);
     };
 
-    handleAddTodo = () => {
-        this.props.addTodo(this.state.input);
-        this.setState({ input: '' });
+    const handleAddTodo = () => {
+        dispatch(addTodo(input));
+        setInput('');
     };
 
-    render() {
-        return (
-            <div className="add-todo-container">
-                <input
-                    onChange={(e) => this.updateInput(e.target.value)}
-                    value={this.state.input}
-                />
-                <button className="add-todo" onClick={this.handleAddTodo}>
-                    Add Todo
-                </button>
-            </div>
-        );
-    }
-}
+    const keyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.keyCode === 13) {
+            handleAddTodo();
+        }
+    };
 
-export default connect(null, { addTodo })(AddTodo);
-// export default AddTodo;
+    return (
+        <div className="add-todo-container">
+            <input
+                onChange={(e) => updateInput(e.target.value)}
+                onKeyDown={keyPress}
+                value={input}
+            />
+            <button className="add-todo" onClick={handleAddTodo}>
+                Add Todo
+            </button>
+        </div>
+    );
+};
+
+export default AddTodo;
