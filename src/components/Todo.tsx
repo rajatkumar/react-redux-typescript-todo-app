@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import cx from 'classnames';
-import { updateTodoApi, toggleTodo } from '../redux/actions';
+import { toggleTodo } from '../redux/actions';
 import { TodoItem } from '../redux/types';
 
 // This is components own props
