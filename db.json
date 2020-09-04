@@ -1,0 +1,44 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "content": "Get Milk",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "content": "Get Oranges",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "content": "get eggs",
+      "completed": false
+    },
+    {
+      "content": "Get bread",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "content": "get something else",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "content": "do chores",
+      "completed": false
+    },
+    {
+      "content": "read about redux",
+      "completed": false,
+      "id": 7
+    },
+    {
+      "content": "get some sleep",
+      "completed": false,
+      "id": 8
+    }
+  ]
+}

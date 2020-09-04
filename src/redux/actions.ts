@@ -1,7 +1,15 @@
-import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from './actionTypes';
-import { VisibilityFilterState } from './types';
+import {
+    ADD_TODO,
+    TOGGLE_TODO,
+    SET_FILTER,
+    ADD_TODO_API,
+    UPDATE_TODO_API,
+} from './actionTypes';
+import { VisibilityFilterState, TodoItem } from './types';
 
 let nextTodoId = 0;
+
+export const getTodoList = () => ({ type: 'GET_TODO_LIST_API' });
 
 export const addTodo = (content: string) => ({
     type: ADD_TODO,
@@ -10,6 +18,19 @@ export const addTodo = (content: string) => ({
         content,
         completed: false,
     },
+});
+
+export const addTodoApi = (content: string) => ({
+    type: ADD_TODO_API,
+    payload: {
+        content,
+        completed: false,
+    },
+});
+
+export const updateTodoApi = (todoItem: TodoItem) => ({
+    type: UPDATE_TODO_API,
+    payload: todoItem,
 });
 
 export const toggleTodo = (id: number) => ({

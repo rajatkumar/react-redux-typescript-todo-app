@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../redux/actions';
+import { addTodoApi } from '../redux/actions';
 
 const AddTodo = () => {
     const [input, setInput] = useState('');
@@ -10,7 +10,7 @@ const AddTodo = () => {
     };
 
     const handleAddTodo = () => {
-        dispatch(addTodo(input));
+        dispatch(addTodoApi(input));
         setInput('');
     };
 
