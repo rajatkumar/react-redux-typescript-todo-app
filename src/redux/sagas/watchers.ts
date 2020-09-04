@@ -1,8 +1,6 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects';
 import {
     GET_TODO_LIST_API,
-    TODO_LIST_LOADED,
-    API_ERRORED,
     UPDATE_TODO_API,
     ADD_TODO_API,
     TOGGLE_TODO,
@@ -11,14 +9,19 @@ import {
     CreateTodoApiAction,
     UpdateTodoApiAction,
     ToggleTodoAction,
-    RootState,
 } from '../types';
 import {
     getTodoListAPI,
     createTodoItemAPI,
     updateTodoItemAPI,
 } from './apiCalls';
-import { updateTodoApi } from '../actions';
+import {
+    updateTodoApi,
+    todoListLoaded,
+    getTodoList,
+    apiError,
+} from '../actions';
+import { getTodoById } from '../selectors';
 
 export default function* rootSaga() {
     // yield all([getTodoListSaga(), updateTodoSaga(), addTodoSaga()]);
@@ -28,15 +31,10 @@ export default function* rootSaga() {
     yield takeEvery(GET_TODO_LIST_API, getApiSaga);
 }
 
-const getTodoItemById = (state: RootState, id: number) => {
-    const todos = state.todos;
-    return todos.byIds[id];
-};
-
 function* toggleTodoSaga(action: ToggleTodoAction) {
     const { id } = action.payload;
     // change state locally first?
-    const todoItem = yield select(getTodoItemById, id);
+    const todoItem = yield select(getTodoById, id);
     if (todoItem) {
         const { content, completed } = todoItem;
         yield put(updateTodoApi({ id, content, completed: !completed }));
@@ -48,10 +46,10 @@ function* toggleTodoSaga(action: ToggleTodoAction) {
 function* getApiSaga() {
     try {
         const newPayload = yield call(getTodoListAPI);
-        yield put({ type: TODO_LIST_LOADED, payload: newPayload });
+        yield put(todoListLoaded(newPayload));
     } catch (e) {
         console.log(e);
-        yield put({ type: API_ERRORED, payload: e });
+        yield put(apiError(e));
     }
 }
 
@@ -59,10 +57,10 @@ function* createApiSaga(action: CreateTodoApiAction) {
     const todoItem = action.payload;
     try {
         yield call(createTodoItemAPI, todoItem);
-        yield put({ type: GET_TODO_LIST_API });
+        yield put(getTodoList());
     } catch (e) {
         console.log(e);
-        yield put({ type: API_ERRORED, payload: e });
+        yield put(apiError(e));
     }
 }
 
@@ -70,9 +68,9 @@ function* updateApiSaga(action: UpdateTodoApiAction) {
     const todoItem = action.payload;
     try {
         yield call(updateTodoItemAPI, todoItem);
-        yield put({ type: GET_TODO_LIST_API });
+        yield put(getTodoList());
     } catch (e) {
         console.log(e);
-        yield put({ type: API_ERRORED, payload: e });
+        yield put(apiError(e));
     }
 }
