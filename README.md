@@ -6,9 +6,13 @@ The basic goal here is to understand how to work with React, React-Redux and Typ
 
 If you are struggling with how to get the right typings, this app is a good way to start.
 
+## with Hooks and Saga
+
+-   Checkout `saga` branch for the code
+
 ## with Hooks
 
--   Checkout `master` branch for the code
+-   Checkout `with-hooks` branch for the code
 
 ### Simple Mental Model
 
