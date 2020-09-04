@@ -1,9 +1,10 @@
-import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from './actionTypes';
-
-export type AddTodoAction = {
-    type: typeof ADD_TODO;
-    payload: TodoItem;
-};
+import {
+    TOGGLE_TODO,
+    SET_FILTER,
+    TODO_LIST_LOADED,
+    UPDATE_TODO_API,
+    ADD_TODO_API,
+} from './actionTypes';
 
 export type ToggleTodoAction = {
     type: typeof TOGGLE_TODO;
@@ -19,7 +20,25 @@ export type SetFilterAction = {
     };
 };
 
-export type AllActionTypes = AddTodoAction | ToggleTodoAction | SetFilterAction;
+export type TodoListLoadedAction = {
+    type: typeof TODO_LIST_LOADED;
+    payload: TodoItem[];
+};
+
+export type UpdateTodoApiAction = {
+    type: typeof UPDATE_TODO_API;
+    payload: TodoItem;
+};
+
+export type CreateTodoApiAction = {
+    type: typeof ADD_TODO_API;
+    payload: TodoItem;
+};
+
+export type AllActionTypes =
+    | ToggleTodoAction
+    | SetFilterAction
+    | TodoListLoadedAction;
 
 export type TodoItem = {
     id: number;
